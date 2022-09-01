@@ -21,7 +21,7 @@ PATCH http://localhost:5000/users/2
 Content-Type: application/json
 
 {
-    "name": "zzzz",
+    "name": "3333",
     "email": "zzz@gmaliasd",
     "gender": "Male"
 }
