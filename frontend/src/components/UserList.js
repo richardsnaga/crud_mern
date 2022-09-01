@@ -3,7 +3,7 @@ import axios from "axios"
 
 
 const UserList = () => {
-    const [user, setUser] = useState([])
+    const [users, setUser] = useState([])
     useEffect(() => {
       getUSers()
     }, [])
@@ -11,7 +11,7 @@ const UserList = () => {
 
     const getUSers = async () => {
         const response = await axios.get('http://localhost:5000/users');
-        console.log(response.data)
+        setUser(response.data)
     }
     return (
     <div className='columns mt-5 is-centered'>
@@ -27,13 +27,18 @@ const UserList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                    {users.map((user,index)=>(
+                    <tr key={user.id}>
+                        <td>{index +1}</td>
+                        <td>{user.name}</td>
+                        <td>{user.email}</td>
+                        <td>{user.gender}</td>
+                        <td>
+                            <button className='button is-small is-info'>Edit</button>
+                            <button className='button is-small is-danger'>Delete</button>
+                        </td>
                     </tr>
+                    ))}
                 </tbody>
             </table>
         </div>
